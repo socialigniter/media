@@ -1,0 +1,1 @@
+<li><a class="sidebar_icon" href="<?= base_url() ?>home/media"><img src="<?= $this_module_assets ?>media_24.png"><span>Media</span></a></li>

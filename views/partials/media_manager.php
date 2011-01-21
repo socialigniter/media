@@ -1,0 +1,3 @@
+<a href="<?= base_url() ?>ajax/images" class="media_manager"><img src="<?= base_url() ?>application/modules/media/assets/images_24.png" border="0" /></a>
+<a href="<?= base_url() ?>ajax/music" class="media_manager"><img src="<?= base_url() ?>application/modules/media/assets/music_24.png" border="0" /></a>
+<a href="<?= base_url() ?>ajax/video" class="media_manager"><img src="<?= base_url() ?>application/modules/media/assets/video_24.png" border="0" /></a>
