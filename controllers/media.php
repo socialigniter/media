@@ -1,5 +1,5 @@
 <?php
-class Media extends Public_Controller
+class Media extends Site_Controller
 {
     function __construct()
     {
