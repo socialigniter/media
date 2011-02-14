@@ -6,43 +6,47 @@ class Api extends Oauth_Controller
     {
         parent::__construct(); 
 
-		// Load Media Model
 		$this->load->model('media_model');             
 	}
 	
-    /* GET types */
     function recent_get()
     {
         $media = $this->social_igniter->get_content_module('media', $limit=10);
         
         if($media)
         {
-            $this->response($media, 200);
+            $message = array('status' => 'success', 'message' => 'Yay media was found', 'data' => $media);
         }
 
         else
         {
-            $this->response(array('error' => 'No media could be find'), 404);
+            $message = array('status' => 'error', 'message' => 'No media could be find');
         }
+        
+        $this->response($message, 200);        
     }
 
 	function view_get()
     {
-        if(!$this->get('id'))
+        if($this->get('id'))
         {
-        	$this->response(NULL, 400);
-        }
-
-        $comments = $this->social_tools->get_comment($this->get('id'));
-    	
-        if($comments)
-        {
-            $this->response($comments, 200);
+	        $comments = $this->social_tools->get_comment($this->get('id'));
+	    	
+	        if($comments)
+	        {
+	            $message = array('status' => 'success',' message' => 'Yay media has been found', 'data' => $comments);
+	        }
+	        else
+	        {
+	            $message = array('status' => 'error', 'message' => 'No media  could be found');
+	        }        
         }
         else
         {
-            $this->response(array('error' => 'No comments could be found'), 404);
+        	$message = array('status' => 'error', 'message' => 'Opps you need an id');        
         }
+
+        $this->response($message, 200);
     }
 
 	/* POST types */
@@ -70,8 +74,7 @@ class Api extends Oauth_Controller
 			
 			if (!$this->upload->do_upload())
 			{				
-				$message	= array('status' => 'error', 'message' => $this->upload->display_errors());
-			    $response	= 200;
+				$message = array('status' => 'error', 'message' => $this->upload->display_errors());
 			}
 			else
 			{
@@ -92,7 +95,7 @@ class Api extends Oauth_Controller
 					'type'				=> 'image',
 					'source'			=> 'website',
 					'order'				=> 0,
-		    		'user_id'			=> $this->session->userdata('user_id'),//$this->oauth_user_id,
+		    		'user_id'			=> $this->session->userdata('user_id'),
 					'title'				=> $this->input->post('title'),
 					'title_url'			=> form_title_url($this->input->post('title'), $this->input->post('title_url')),
 					'content'			=> $uploaded_image,
@@ -119,27 +122,23 @@ class Api extends Oauth_Controller
 	
 		    	if ($result)
 			    {
-		        	$message	= array('status' => 'success', 'message' => 'Awesome we posted your '.$content_data['type'], 'data' => $result['content'], 'activity' => $result['activity']);		    
-		        	$response	= 200;
+		        	$message = array('status' => 'success', 'message' => 'Awesome we posted your '.$content_data['type'], 'data' => $result['content'], 'activity' => $result['activity']);		    
 		        }
 		        else
 		        {
-			        $message	= array('status' => 'error', 'message' => 'Oops unable to add image to site');
-			        $response	= 200;		        
+			        $message = array('status' => 'error', 'message' => 'Oops unable to add image to site');
 		        }
 			}
 		}					
 		else 
 		{ 
-			$message 	= array('status' => 'error', 'message' => 'No file to upload');
-			$response	= 200;
+			$message = array('status' => 'error', 'message' => 'No file to upload');
 		}
 		
-		// KLUDGY ASS SOLUTION
-		// So it works with the nasty browser bug of wraping <pre></pre>
+		// KLUDGY ASS SOLUTION - So it works with the nasty browser bug of wraping <pre></pre>
 		if ($this->get('format') == 'html') $message = json_encode($message);
 
-        $this->response($message, $response);
+        $this->response($message, 200);
     }    
     
     
@@ -150,12 +149,14 @@ class Api extends Oauth_Controller
     	
         if($viewed)
         {
-            $this->response(array('status' => 'success', 'message' => 'Comment viewed'), 200);
+            $message = array('status' => 'success', 'message' => 'Comment viewed');
         }
         else
         {
-            $this->response(array('status' => 'error', 'message' => 'Could not mark as viewed'), 404);
-        }    
+            $message = array('status' => 'error', 'message' => 'Could not mark as viewed');
+        }
+
+        $this->response($message, 200);           
     }   
     
     function approve_put()
@@ -164,12 +165,14 @@ class Api extends Oauth_Controller
 
         if($approve)
         {
-            $this->response(array('status' => 'success', 'message' => 'Comment approved'), 200);
+            $message = array('status' => 'success', 'message' => 'Comment approved');
         }
         else
         {
-            $this->response(array('status' => 'error', 'message' => 'Could not be approved'), 404);
+            $message = array('status' => 'error', 'message' => 'Could not be approved');
         }
+
+        $this->response($message, 200);        
     } 
 
     /* DELETE types */
@@ -182,7 +185,6 @@ class Api extends Oauth_Controller
     	if ($access)
         {
 			//$comment = $this->social_tools->get_comment($this->get('id'));
-        
         	$this->social_tools->delete_comment($this->get('id'));
         
 			// Reset comments with this reply_to_id
@@ -191,13 +193,14 @@ class Api extends Oauth_Controller
 			// Update Content
 			$this->social_igniter->update_content_comments_count($this->get('id'));
         
-        	$this->response(array('status' => 'success', 'message' => 'Comment deleted'), 200);
+        	$message = array('status' => 'success', 'message' => 'Comment deleted');
         }
         else
         {
-            $this->response(array('status' => 'error', 'message' => 'You do not have access to delete comment!'), 404);
+            $message = array('status' => 'error', 'message' => 'You do not have access to delete comment!');
         }
         
+        $this->response($message, 200);        
     }
 
 }

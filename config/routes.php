@@ -10,7 +10,8 @@
 * Standard installed routes for Blog Module. 
 * All routes must start with the first segment being 'blog'
 */
-$route['media'] 					= 'media';
+$route['media'] 					= 'media/index';
+$route['media/view/(:any)']			= 'media/view';
 $route['media/home/images']			= 'home/images';
 $route['media/home/images/(:num)']	= 'home/gallery';
 $route['media/manager']				= 'manager/index';	
