@@ -17,7 +17,7 @@ INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_small_height', '125');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_formats', 'gif|jpg|jpeg|png');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_max_size', '25600');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_max_dimensions', '3000');
-INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_folder', 'media/images/');
+INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_folder', 'upload/images/');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_sizes_original', 'yes');
 
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'audio_allow', 'no');

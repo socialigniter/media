@@ -35,7 +35,7 @@ class Media_igniter
 		if (!$category->details)
 		{
 			// Get Most Recent Image
-			$image = $this->ci->social_igniter->get_content_view_recent('category_id', $category->category_id);
+			$image = $this->ci->social_igniter->get_content_view('category_id', $category->category_id);
 			
 			// Update Category
 			$this->ci->social_tools->update_category_details($category->category_id, json_encode(array('thumb' => $image->content)));
