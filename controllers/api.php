@@ -75,10 +75,20 @@ class Api extends Oauth_Controller
 			}
 			else
 			{
-				$data = array('upload_data' => $this->upload->data());					
-				$this->media_model->make_images($data['upload_data']['file_name'], $data['upload_data']['image_width'], $data['upload_data']['image_height'], $category_id);										
-				$data['deleted'] = unlink("uploads/".$data['upload_data']['file_name']);
-				$uploaded_image = $data['upload_data']['file_name'];
+				// Load Image Model
+				$this->load->model('image_model');
+				
+				// Upload & Sizes
+				$file_data		= $this->upload->data();
+				$image_sizes	= array('full', 'large', 'medium', 'small');
+				$create_path	= config_item('media_images_folder').$category_id.'/';
+								
+				// Do Resizes					
+				$this->image_model->make_images($file_data, 'media', $image_sizes, $create_path, FALSE);										
+
+				// Delete Upload
+				$file_data['deleted'] = unlink(config_item('uploads_folder').$file_data['file_name']);				
+				$uploaded_image = $file_data['file_name'];
 				
 				// Values
 				$viewed 	= 'Y';
