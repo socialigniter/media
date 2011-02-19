@@ -4,9 +4,7 @@ class Api extends Oauth_Controller
 {
     function __construct()
     {
-        parent::__construct(); 
-
-		$this->load->model('media_model');             
+        parent::__construct();
 	}
 	
     function recent_get()
