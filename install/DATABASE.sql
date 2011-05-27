@@ -1,4 +1,11 @@
+INSERT INTO `settings` VALUES(NULL, 1, 'media', 'widgets', 'TRUE');
+INSERT INTO `settings` VALUES(NULL, 1, 'media', 'categories', 'TRUE');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'enabled', 'TRUE');
+
+INSERT INTO `settings` VALUES(NULL, 1, 'media', 'create_permission', '3');
+INSERT INTO `settings` VALUES(NULL, 1, 'media', 'publish_permission', '2');
+INSERT INTO `settings` VALUES(NULL, 1, 'media', 'manage_permission', '2');
+
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_allow', 'no');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_sizes_full', 'yes');
 INSERT INTO `settings` VALUES(NULL, 1, 'media', 'images_sizes_large', 'yes');

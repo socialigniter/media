@@ -32,6 +32,5 @@
 
 	<input type="hidden" name="geo_lat" id="geo_lat" />
 	<input type="hidden" name="geo_long" id="geo_long" />
-	<input type="hidden" name="geo_accuracy" id="geo_accuracy" />
 
 </form>

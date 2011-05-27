@@ -14,6 +14,7 @@
 */
 
 // Media Settings
+$config['media_path']			= 'media/';
 $config['media_audio_path']		= 'media/audio/';
 $config['media_images_path']	= 'media/images/';
 $config['media_files_path']		= 'media/files/';

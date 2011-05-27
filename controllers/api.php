@@ -112,7 +112,6 @@ class Api extends Oauth_Controller
 					'comments_allow'	=> 'Y',
 					'geo_lat'			=> $this->input->post('geo_lat'),
 					'geo_long'			=> $this->input->post('geo_long'),
-					'geo_accuracy'		=> $this->input->post('geo_accuracy'),
 					'viewed'			=> $viewed,
 					'approval'			=> $approval,
 					'status'			=> 'P'
@@ -151,7 +150,7 @@ class Api extends Oauth_Controller
     
     
     /* PUT types */
-    function viewed_put()
+    function viewed_get()
     {
 		$viewed = $this->social_tools->update_comment_viewed($this->get('id'));			
     	
@@ -167,7 +166,7 @@ class Api extends Oauth_Controller
         $this->response($message, 200);           
     }   
     
-    function approve_put()
+    function approve_get()
     {
     	$approve = $this->social_tools->update_comment_approve($this->get('id'));	
 
@@ -184,7 +183,7 @@ class Api extends Oauth_Controller
     } 
 
     /* DELETE types */
-    function destroy_delete()
+    function destroy_get()
     {		
 		// Make sure user has access to do this func
 		$access = $this->social_tools->has_access_to_delete('comment', $this->get('id'));

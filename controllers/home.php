@@ -35,7 +35,7 @@ class Home extends Dashboard_Controller
 		$this->data['sub_title']			= 'Images';
 		$this->data['category_id']			= '';
 		$this->data['categories']			= $this->social_tools->get_categories_view('type', 'image-album');
-		$this->data['categories_dropdown'] 	= $this->social_tools->get_categories_dropdown('type', 'image-album', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
+		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown('type', 'image-album', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
 		
 		$this->render('dashboard_wide');
 	}
@@ -52,6 +52,27 @@ class Home extends Dashboard_Controller
 		$this->data['images']			= $this->social_igniter->get_content_view('category_id', $this->uri->segment(4));
 		
 		$this->render('dashboard_wide');
+	}
+	
+	function audio()
+	{
+		$this->data['sub_title']		= 'Audio';		
+	
+		$this->render();
+	}
+	
+	function files()
+	{
+		$this->data['sub_title']		= 'Files';
+	
+		$this->render();
+	}
+	
+	function video()
+	{
+		$this->data['sub_title']		= 'Video';
+		
+		$this->render();
 	}
 
 }

@@ -46,7 +46,7 @@ class Media extends Site_Controller
 			else					$comments_title = 'Write';
 
 			$this->data['comments_title']	= $comments_title;
-			$this->data['comments_list'] 	= $this->social_tools->render_children_comments($comments, '0');
+			$this->data['comments_list'] 	= $this->social_tools->render_comments_children($comments, '0');
 
 			// Write
 			$this->data['comment_name']			= $this->session->flashdata('comment_name');
@@ -56,7 +56,6 @@ class Media extends Site_Controller
 			$this->data['comment_type']			= 'page';
 			$this->data['geo_lat']				= $this->session->flashdata('geo_lat');
 			$this->data['geo_long']				= $this->session->flashdata('geo_long');
-			$this->data['geo_accuracy']			= $this->session->flashdata('geo_accuracy');
 			$this->data['comment_error']		= $this->session->flashdata('comment_error');
 
 			// ReCAPTCHA Enabled
@@ -88,6 +87,21 @@ class Media extends Site_Controller
 		$this->data['page_title'] = 'File';
 	
 		$this->render();
+	}
+	
+	
+	/* Widgets */
+	function widgets_recent_pictures()
+	{
+		
+		$this->load->view('widgets/recent_pictures', $this->data);	
+	}
+
+
+	function widgets_recent_audio()
+	{
+		
+		$this->load->view('widgets/recent_audio', $this->data);	
 	}
 	
 }
