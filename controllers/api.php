@@ -8,20 +8,17 @@ class Api extends Oauth_Controller
 	}
 	
     function recent_get()
-    {
-        $media = $this->social_igniter->get_content_module('media', $limit=10);
-        
-        if($media)
+    {        
+        if($media = $this->social_igniter->get_content_module('media', $limit=10))
         {
             $message = array('status' => 'success', 'message' => 'Yay media was found', 'data' => $media);
         }
-
         else
         {
             $message = array('status' => 'error', 'message' => 'No media could be find');
         }
-        
-        $this->response($message, 200);        
+
+        $this->response($message, 200);
     }
 
 	function view_get()
@@ -100,7 +97,7 @@ class Api extends Oauth_Controller
 					'parent_id'			=> 0,
 					'category_id'		=> $category_id,
 					'module'			=> 'media',
-					'type'				=> 'image',
+					'type'				=> 'photo',
 					'source'			=> 'website',
 					'order'				=> 0,
 		    		'user_id'			=> $this->session->userdata('user_id'),
@@ -209,5 +206,70 @@ class Api extends Oauth_Controller
         
         $this->response($message, 200);        
     }
+    
+    /* Install App */
+	function install_get()
+	{
+		// Load
+		$this->load->library('installer');
+		$this->load->config('install');        
+
+		// Settings & Create Folders
+		$settings	= $this->installer->install_settings('media', config_item('media_settings'));
+		$folders	= $this->installer->create_folders(config_item('media_folders'));
+	
+		if ($settings == TRUE AND $folders == TRUE)
+		{
+            $message = array('status' => 'success', 'message' => 'Yay, the Media App was installed');
+        }
+        else
+        {
+            $message = array('status' => 'error', 'message' => 'No media could be find');
+        }		
+		
+		$this->response($message, 200);
+	}  
+
+	function reinstall_get()
+	{
+		// Load
+		$this->load->library('installer');
+		$this->load->config('install');        
+
+		// Settings & Create Folders
+		$settings	= $this->installer->install_settings('media', config_item('media_settings'), TRUE);
+		$folders	= $this->installer->create_folders(config_item('media_folders'));
+	
+		if ($settings == TRUE AND $folders == TRUE)
+		{
+            $message = array('status' => 'success', 'message' => 'Yay, the Media App was installed');
+        }
+        else
+        {
+            $message = array('status' => 'error', 'message' => 'No media could be find');
+        }		
+		
+		$this->response($message, 200);
+	}  
+
+	
+	function uninstall_get()
+	{
+		$this->load->library('installer');
+	
+		$settings	= $this->installer->uninstall_settings('media');
+		$files		= $this->installer->delete_app('app');
+	
+		if ($settings AND $files)
+		{		
+            $message = array('status' => 'success', 'message' => 'Media App was unistalled');
+        }
+        else
+        {
+            $message = array('status' => 'error', 'message' => 'Dang, the Media App could not be uninstalled');
+        }		
+		
+		$this->response($message, 200);	
+	}
 
 }
