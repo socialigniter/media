@@ -240,7 +240,7 @@ class Api extends Oauth_Controller
 		$settings	= $this->installer->install_settings('media', config_item('media_settings'), TRUE);
 		$folders	= $this->installer->create_folders(config_item('media_folders'));
 	
-		if ($settings == TRUE AND $folders == TRUE)
+		if ($settings == true AND $folders == true)
 		{
             $message = array('status' => 'success', 'message' => 'Yay, the Media App was installed');
         }
@@ -253,14 +253,14 @@ class Api extends Oauth_Controller
 	}  
 
 	
-	function uninstall_get()
+	function uninstall_authd_get()
 	{
 		$this->load->library('installer');
 	
 		$settings	= $this->installer->uninstall_settings('media');
 		$files		= $this->installer->delete_app('app');
 	
-		if ($settings AND $files)
+		if ($settings == true AND $files == true)
 		{		
             $message = array('status' => 'success', 'message' => 'Media App was unistalled');
         }

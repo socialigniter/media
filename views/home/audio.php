@@ -23,7 +23,7 @@ $(document).ready(function()
 		var upload_data = $('#user_details').serializeArray();
 		upload_data.push({'name':'file_hash','value': file_hash});	
 	
-		$(this).oauthAjax(
+		$.oauthAjax(
 		{
 			oauth 		: user_data,
 			url			: $(this).attr('ACTION'),
@@ -33,7 +33,7 @@ $(document).ready(function()
 	  		success		: function(result)
 	  		{
 				$('html, body').animate({scrollTop:0});
-				$('#content_message').notify({scroll:true,status:result.status,message:result.message});
+				$('#content_message').notify({status:result.status,message:result.message});
 		 	}
 		});		
 	});	

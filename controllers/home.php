@@ -34,8 +34,8 @@ class Home extends Dashboard_Controller
 	{		
 		$this->data['sub_title']			= 'Images';
 		$this->data['category_id']			= '';
-		$this->data['categories']			= $this->social_tools->get_categories_view('type', 'image-album');
-		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown('type', 'image-album', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
+		$this->data['categories']			= $this->social_tools->get_categories_view('type', 'photo-album');
+		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown('type', 'photo-album', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
 		
 		$this->render('dashboard_wide');
 	}

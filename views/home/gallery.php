@@ -44,7 +44,7 @@ $(document).ready(function()
 			url_pre		: base_url + 'media/images/',
 			url_sub		: base_url + 'api/categories/modify/id/' + category_id,
 			module		: 'media',
-			type		: 'image-album',
+			type		: 'photo-album',
 			title		: 'Edit Photo Album',
 			slug_value	: '',
 			trigger		: $('.content [name=category_id]')
