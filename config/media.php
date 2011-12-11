@@ -22,5 +22,5 @@ $config['media_types']			= array(
 	'image'		=> 'Image',
 	'audio'		=> 'Audio',
 	'file'		=> 'File',
-	'video'		=> 'Video',
+	'video'		=> 'Video'
 );

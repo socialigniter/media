@@ -8,42 +8,33 @@
 * @link			http://social-igniter.com
 *
 */
- 
+
 class Media_igniter
 {
-
 	function __construct()
 	{
 		$this->ci =& get_instance();
-		
-		// Load Configs
-		$this->ci->load->config('media');
-
-		// Load Universal Models
-		$this->ci->load->model('media_model');
 	}
-	
-	
-	function get_media()
-	{
-		return $this->ci->media_model->get_media();
-	}
-	
 
 	function display_image_album_thumbnail($category)
-	{	
-		if (!$category->details)
+	{
+		log_message('debug', 'I IZ HERE');
+		
+		$thumb = 'dogs';
+
+		/*
+		if ($category->details == '')
 		{
 			// Get Most Recent Image
-			$image = $this->ci->social_igniter->get_content_view('category_id', $category->category_id);
+			$images = $this->ci->social_igniter->get_content_view('category_id', $category->category_id);
 			
 			// Update Category
-			$this->ci->social_tools->update_category_details($category->category_id, json_encode(array('thumb' => $image->content)));
+			$this->ci->social_tools->update_category_details($category->category_id, json_encode(array('thumb' => $images->content)));
 			
-			$thumb = base_url().config_item('media_images_folder').$category->category_id.'/small_'.$image->content;
+			//$thumb = $category->category_id.'/'.$images->content;
 		}
 		else
-		{	
+		{			
 			$details = json_decode($category->details);
 			
 			// If Image Does Not Exist
@@ -59,6 +50,7 @@ class Media_igniter
 				$thumb = base_url().config_item('media_images_folder').$category->category_id.'/small_'.$details->thumb;			
 			}
 		}
+		*/
 		
 		return $thumb;
 	}
