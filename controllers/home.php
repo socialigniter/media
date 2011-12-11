@@ -4,29 +4,17 @@ class Home extends Dashboard_Controller
     function __construct()
     {
         parent::__construct();
-		
-		$this->load->library('media_igniter');
+
+		$this->load->config('media');
 		$this->load->helper('media');	
+		$this->load->library('media_igniter');
+		$this->load->model('media_model');		
 
 		$this->data['page_title'] 	= 'Media';
 	}
 	
 	function index()
 	{				
-		$this->data['type']			= '';
-		$this->data['file']			= '';
-
-		// Recent Media	
-		$recent_media				= $this->media_igniter->get_media();
-		$view_media					= NULL;
-		
-		foreach ($recent_media as $media)
-		{		
-			$view_media			   .= $this->load->view($this->config->item('dashboard_theme').'/partials/feed_timeline.php', $this->data, true);	
-		}
-				
-		$this->data['view_media']	= $view_media;
-	
 		$this->render();
 	}
 	
@@ -35,7 +23,7 @@ class Home extends Dashboard_Controller
 		$this->data['sub_title']			= 'Images';
 		$this->data['category_id']			= '';
 		$this->data['categories']			= $this->social_tools->get_categories_view('type', 'photo-album');
-		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown('type', 'photo-album', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
+		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown(array('categories.type' => 'photo-album'), $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
 		
 		$this->render('dashboard_wide');
 	}

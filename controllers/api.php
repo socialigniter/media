@@ -5,6 +5,11 @@ class Api extends Oauth_Controller
     function __construct()
     {
         parent::__construct();
+
+		$this->load->config('media');
+		$this->load->helper('media');
+		$this->load->library('media_igniter');
+		$this->load->model('media_model');
 	}
 	
     function recent_get()
@@ -81,8 +86,8 @@ class Api extends Oauth_Controller
 				$image_sizes	= array('full', 'large', 'medium', 'small');
 				$create_path	= config_item('media_images_folder').$category_id.'/';
 								
-				// Do Resizes					
-				$this->image_model->make_images($file_data, 'media', $image_sizes, $create_path, FALSE);										
+				// Make Thumb
+				$this->image_model->make_images($create_path, $file_data['file_name'], 'media', 'medium');
 
 				// Delete Upload
 				$file_data['deleted'] = unlink(config_item('uploads_folder').$file_data['file_name']);				

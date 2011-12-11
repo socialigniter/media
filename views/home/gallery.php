@@ -34,22 +34,13 @@
 $(document).ready(function()
 {
 	// Edit Category
-	$('#gallery_descriptions').live('click', function()
+	$('#category_id').categoryManager(
 	{
-		var category_id = jQuery.url.segment(4);
-
-		$.categoryEditor(
-		{
-			url_api		: base_url + 'api/categories/view/type/images',
-			url_pre		: base_url + 'media/images/',
-			url_sub		: base_url + 'api/categories/modify/id/' + category_id,
-			module		: 'media',
-			type		: 'photo-album',
-			title		: 'Edit Photo Album',
-			slug_value	: '',
-			trigger		: $('.content [name=category_id]')
-		});		
+		action		: 'edit',
+		module		: 'media',
+		type		: 'photo-album',
+		title		: 'Edit Photo Album',
+		category_id	: category_id
 	});
-	
 });
 </script>
