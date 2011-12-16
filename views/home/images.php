@@ -1,5 +1,4 @@
 <h3>Photo Albums</h3>
-
 <div id="photo_albums">
 <?php foreach ($categories as $category):
 	$image = $this->media_igniter->display_image_album_thumbnail($category, 'small');
@@ -13,10 +12,7 @@
 	</div>
 <?php endforeach; ?>
 </div>	
-
-	<div class="clear"></div>	
-
-
+<div class="clear"></div>	
 <script type="text/javascript">
 $(document).ready(function()
 {

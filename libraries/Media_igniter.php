@@ -41,7 +41,7 @@ class Media_igniter
 				
 				// Get Thumbnail
 		    	$this->ci->load->model('image_model');
-		    	$result = $this->ci->image_model->get_thumbnail(config_item('media_images_folder').$category->category_id.'/', $images[0]->content, 'media', 'small');
+		    	$result = $this->ci->image_model->get_thumbnail(config_item('media_images_folder').$category->category_id, $images[0]->content, 'media', 'small');
 
 				$thumbnail = base_url().$result;
 			}

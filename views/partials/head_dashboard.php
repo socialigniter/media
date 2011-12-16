@@ -24,14 +24,10 @@ div.photo_album ul li { margin: 5px 0; }
 #photo_album p.album_description				{ margin: 0 0 5px 0; }
 #photo_album p.album_details					{ color: #999999; margin: 0 0; text-shadow: 1px 1px 1px #ffffff; }
 
-
-#gallery_title { width: 450px; }
-
-#gallery_descriptions {float:left;width:430px;position:absolute;}
-	#gallery_descriptions h3{ margin:0; }
-	#gallery_descriptions p{ margin:5px 0 0 0; color:#666; text-shadow:#fff 1px 1px 1px; }
-	
-#fancybox-outer .editify {position:absolute;bottom:0;}
-
+#gallery_title 				{ width: 450px; }
+#gallery_descriptions 		{ float:left;width:430px;position:absolute;}
+#gallery_descriptions h3	{ margin:0; }
+#gallery_descriptions p		{ margin:5px 0 0 0; color:#666; text-shadow:#fff 1px 1px 1px; }
+#fancybox-outer .editify 	{ position:absolute;bottom:0; }
 </style>
 <script src="<?= $modules_assets ?>media.js"></script>
