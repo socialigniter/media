@@ -6,11 +6,11 @@ class Home extends Dashboard_Controller
         parent::__construct();
 
 		$this->load->config('media');
-		$this->load->helper('media');	
+		$this->load->helper('media');
 		$this->load->library('media_igniter');
-		$this->load->model('media_model');		
+		$this->load->model('media_model');
 
-		$this->data['page_title'] 	= 'Media';
+		$this->data['page_title'] = 'Media';
 	}
 	
 	function index()
@@ -23,12 +23,12 @@ class Home extends Dashboard_Controller
 		$this->data['sub_title']			= 'Images';
 		$this->data['category_id']			= '';
 		$this->data['categories']			= $this->social_tools->get_categories_view('type', 'photo-album');
-		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown(array('categories.type' => 'photo-album'), $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');			
-		
+		$this->data['categories_dropdown'] 	= $this->social_tools->make_categories_dropdown(array('categories.type' => 'photo-album'), $this->session->userdata('user_id'), $this->session->userdata('user_level_id'), '+ Add Photo Album');
+
 		$this->render('dashboard_wide');
 	}
 
-	function gallery()
+	function photo_album()
 	{		
 		if (!$this->uri->segment(4))
 		{
@@ -48,14 +48,7 @@ class Home extends Dashboard_Controller
 	
 		$this->render();
 	}
-	
-	function files()
-	{
-		$this->data['sub_title']		= 'Files';
-	
-		$this->render();
-	}
-	
+
 	function video()
 	{
 		$this->data['sub_title']		= 'Video';
