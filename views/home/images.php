@@ -1,6 +1,6 @@
 <h3>Photo Albums</h3>
 <div id="photo_albums">
-<?php foreach ($categories as $category):
+<?php if ($categories): foreach ($categories as $category):
 	$image = $this->media_igniter->display_image_album_thumbnail($category, 'small');
 ?>
 	<div class="photo_album">
@@ -10,7 +10,9 @@
 			<li class="small_details"><?= $category->contents_count ?> Photos</li>
 		</ul>
 	</div>
-<?php endforeach; ?>
+<?php endforeach; else: ?>
+<p>No photo albums exist</p>
+<?php endif; ?>
 </div>	
 <div class="clear"></div>	
 <script type="text/javascript">
