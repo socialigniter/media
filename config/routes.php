@@ -13,5 +13,5 @@
 $route['media'] 					= 'media/index';
 $route['media/view/(:any)']			= 'media/view';
 $route['media/home/images']			= 'home/images';
-$route['media/home/images/(:num)']	= 'home/gallery';
+$route['media/home/images/(:num)']	= 'home/photo_album';
 $route['media/manager']				= 'manager/index';	

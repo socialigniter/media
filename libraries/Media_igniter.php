@@ -16,43 +16,42 @@ class Media_igniter
 		$this->ci =& get_instance();
 	}
 
-	function display_image_album_thumbnail($category)
+	function display_image_album_thumbnail($category, $thumb='small')
 	{
-		log_message('debug', 'I IZ HERE');
-		
-		$thumb = 'dogs';
+		$details = json_decode($category->details);
 
-		/*
-		if ($category->details == '')
+	    if (!is_object($details))
+	    {
+			$details = new stdClass();
+	    }
+
+		// Has Thumbnail
+		if (isset($details->thumb))
 		{
-			// Get Most Recent Image
-			$images = $this->ci->social_igniter->get_content_view('category_id', $category->category_id);
-			
-			// Update Category
-			$this->ci->social_tools->update_category_details($category->category_id, json_encode(array('thumb' => $images->content)));
-			
-			//$thumb = $category->category_id.'/'.$images->content;
+			$thumbnail = base_url().config_item('media_images_folder').$category->category_id.'/'.$thumb.'_'.$details->thumb;
 		}
 		else
-		{			
-			$details = json_decode($category->details);
-			
-			// If Image Does Not Exist
-		    if (!file_exists(config_item('media_images_folder').$category->category_id.'/small_'.$details->thumb))
-		    {
-				$this->ci->social_tools->update_category_details($category->category_id, '');
-					  
-				// Recursive
-				$this->display_image_album_thumbnail($category);
+		{
+			// Get Album Images
+			if ($images = $this->ci->social_igniter->get_content_view('category_id', $category->category_id))
+			{
+				// Update Thumbnail
+			    $details->thumb = $images[0]->content;
+				$this->ci->social_tools->update_category_details($category->category_id, json_encode($details));
+				
+				// Get Thumbnail
+		    	$this->ci->load->model('image_model');
+		    	$result = $this->ci->image_model->get_thumbnail(config_item('media_images_folder').$category->category_id, $images[0]->content, 'media', 'small');
+
+				$thumbnail = base_url().$result;
 			}
 			else
 			{
-				$thumb = base_url().config_item('media_images_folder').$category->category_id.'/small_'.$details->thumb;			
+				$thumbnail = base_url().'application/views/'.config_item('site_theme').'/assets/images/large_no_photo.png';
 			}
 		}
-		*/
 		
-		return $thumb;
+		return $thumbnail;
 	}
 
 }

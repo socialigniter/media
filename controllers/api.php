@@ -80,19 +80,15 @@ class Api extends Oauth_Controller
 			{
 				// Load Image Model
 				$this->load->model('image_model');
-				
+
 				// Upload & Sizes
 				$file_data		= $this->upload->data();
 				$image_sizes	= array('full', 'large', 'medium', 'small');
 				$create_path	= config_item('media_images_folder').$category_id.'/';
-								
-				// Make Thumb
-				$this->image_model->make_images($create_path, $file_data['file_name'], 'media', 'medium');
 
-				// Delete Upload
-				$file_data['deleted'] = unlink(config_item('uploads_folder').$file_data['file_name']);				
-				$uploaded_image = $file_data['file_name'];
-				
+				// Make Thumb
+				$this->image_model->make_thumbnail($create_path, $file_data['file_name'], 'media', 'medium');
+
 				// Values
 				$viewed 	= 'Y';
 				$approval	= 'Y';
@@ -108,7 +104,7 @@ class Api extends Oauth_Controller
 		    		'user_id'			=> $this->session->userdata('user_id'),
 					'title'				=> $this->input->post('title'),
 					'title_url'			=> form_title_url($this->input->post('title'), $this->input->post('title_url')),
-					'content'			=> $uploaded_image,
+					'content'			=> $file_data['file_name'],
 					'details'			=> '',
 					'access'			=> $this->input->post('access'),
 					'comments_allow'	=> 'Y',
