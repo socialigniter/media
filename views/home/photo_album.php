@@ -10,8 +10,8 @@
 			<li class="media_item">
 				<a href="<?= base_url().config_item('media_images_folder').$image->category_id.'/'.$image->content ?>" class="images_fancybox"><img src="<?= base_url().config_item('media_images_folder').$image->category_id.'/small_'.$image->content ?>" alt="<?= $image->title ?>"></a>
 				<ul class="media_actions">
-					<li><a href="<?= base_url().config_item('media_images_folder').$image->category_id.'/'.$image->content ?>" class="images_fancybox"><span class="actions action_see"></span> View</a></li>
-					<li><a href=""><span class="actions action_edit"></span> Edit</a></li>
+					<li><a href="<?= base_url().'media/view/'.$image->content_id ?>" class="images_fancybox"><span class="actions action_see"></span> View</a></li>
+					<li><a href="<?= base_url().'home/media/image/'.$image->content_id ?>"><span class="actions action_edit"></span> Edit</a></li>
 				</ul>
 			</li>
 		<?php endforeach; ?>
@@ -24,14 +24,8 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
-	// Edit Category
-	$('#category_id').categoryManager(
-	{
-		action		: 'edit',
-		module		: 'media',
-		type		: 'photo-album',
-		title		: 'Edit Photo Album',
-		category_id	: category_id
-	});
+	
+	
+	
 });
 </script>
