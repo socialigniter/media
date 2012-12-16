@@ -1,8 +1,15 @@
 <style type="text/css">
-/* Media Dashboard */
-div.photo_album { float: left; margin: 0 45px 15px 0; }
-div.photo_album ul li { margin: 5px 0; }
 
+/* Images - Albums */
+#photo_albums			{ }
+
+div.photo_album 		{ width: 145px; height: 175px; float: left; margin: 0 35px 45px 0; }
+div.photo_album ul		{ margin: 0px; padding: 0px; }
+div.photo_album ul li 	{ margin: 0 0 5px 0; }
+
+
+
+/* Images - Photo Album */
 #photo_album 									{ display:block; padding:0 0 7px 5px; }
 #photo_album.images li.media_item 				{ float:left; display:block; text-align:center; width:125px; min-height:125px; margin:14px 12px 0 12px; }
 #photo_album.images ul img 						{ width:125px; height:125px; display:block; margin:0 0 5px 0; }
@@ -23,6 +30,7 @@ div.photo_album ul li { margin: 5px 0; }
 
 #photo_album p.album_description				{ margin: 0 0 5px 0; }
 #photo_album p.album_details					{ color: #999999; margin: 0 0; text-shadow: 1px 1px 1px #ffffff; }
+
 
 #gallery_title 				{ width: 450px; }
 #gallery_descriptions 		{ float:left;width:430px;position:absolute;}
